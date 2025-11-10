@@ -29,7 +29,6 @@ public:
     }
 
     explicit operator std::string() const {
-        // безопасно захватываем оба мьютекса одновременно
         std::unique_lock<std::mutex> lock0(mutexes[0], std::defer_lock);
         std::unique_lock<std::mutex> lock1(mutexes[1], std::defer_lock);
         std::lock(lock0, lock1);
